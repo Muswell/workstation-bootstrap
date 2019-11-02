@@ -1,0 +1,19 @@
+- name: Install Bash (Arch)
+  pacman:
+    name:
+      - bash
+      - bash-completion
+    state: present
+  tags:
+    - shell
+  when: ansible_os_family == "Archlinux"
+
+- name: Install ZSH (Arch)
+  pacman:
+    name:
+      - zsh
+      - zsh-completions
+    state: present
+  tags:
+    - shell
+  when: ansible_os_family == "Archlinux"

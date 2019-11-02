@@ -1,0 +1,16 @@
+---
+- name: Install stow
+  pacman: name=stow state=present
+  when: dotfiles is defined
+
+- name: Clone user dotfiles
+  git: repo={{ dotfiles.url }} dest=/home/{{ user.name }}/{{ dotfiles.destination }} accept_hostkey=yes update=no
+  when: dotfiles is defined
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Install user dotfiles
+  command: chdir={{ dotfiles.destination }} for i in *; do if [[ -d $i ]]; then  stoe $i; fi; done
+  when: dotfiles is defined
+  become: yes
+  become_user: "{{ user.name }}"
