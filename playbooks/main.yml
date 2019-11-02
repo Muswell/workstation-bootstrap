@@ -16,3 +16,6 @@
     - { role: ntp, tags: ['ntp'] }
     - { role: pass, tags: ['pass'] }
     - { role: sound, tags: ['sound'] }
+  vars_prompt:
+      - name: user_password
+        prompt: "Enter desired user password"
