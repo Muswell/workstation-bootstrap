@@ -25,8 +25,8 @@ aur:
 
 ssh:
     port: 22
-    user_key: /root/id_rsa
-    enable_sshd: False
+    user_key: /root/id_ecdsa
+    enable_sshd: True
 
 gnupg:
     enable_agent: True
