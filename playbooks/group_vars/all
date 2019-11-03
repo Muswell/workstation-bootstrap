@@ -1,7 +1,7 @@
 user:
     name: muswell
     uid: 1000
-    group: muswlee
+    group: muswell
     shell: /usr/bin/zsh
     email:  slickrickjamesbrown@gmail.com
     log:
