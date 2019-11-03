@@ -10,7 +10,7 @@
   become_user: "{{ user.name }}"
 
 - name: Install user dotfiles
-  command: chdir={{ dotfiles.destination }} for i in *; do if [[ -d $i ]]; then stow $i; fi; done
+  command: chdir=/home/{{ user.name }}/{{ dotfiles.destination }} for i in *; do if [[ -d $i ]]; then stow $i; fi; done
   when: dotfiles is defined
   become: yes
   become_user: "{{ user.name }}"
