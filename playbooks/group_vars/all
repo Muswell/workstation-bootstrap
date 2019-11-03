@@ -88,6 +88,11 @@ base_packages:
     - python2-docs
     - screen
     - python-pipenv
+    - fzf
+    - tree
+    - zip
+    - unzip
+    - xclip
 
 filesystem_packages:
     - dosfstools
@@ -268,6 +273,9 @@ base_fonts:
     - ttf-opensans
     - ttf-ubuntu-font-family
     - ttf-font-awesome
+    - adobe-source-code-pro-fonts
+    - adobe-source-sans-pro-fonts
+    - adobe-source-serif-pro-fonts
 
 aur_fonts:
     - ttf-courier-prime
