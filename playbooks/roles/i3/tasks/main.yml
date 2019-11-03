@@ -2,11 +2,19 @@
 - name: Install i3
   pacman:
     name:
-      - i3-wm
+      - i3-gaps
       - i3blocks
       - i3lock
       - i3status
+      - compton
     state: present
+
+- name: Install polybar
+  aur:
+    name: polybar
+    user: "{{ user.name }}"
+  tags:
+    - aur
 
 - name: Install py3status
   pacman: name=py3status state=present

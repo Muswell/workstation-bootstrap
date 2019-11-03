@@ -21,7 +21,6 @@ aur:
         - downgrade
         - zplug
         - miller
-        - polybar
 
 ssh:
     port: 22
