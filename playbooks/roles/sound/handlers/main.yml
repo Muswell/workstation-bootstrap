@@ -1,4 +1,4 @@
- ---
+---
 - name: restart pulse as user
   systemd:
     name: pulseaudio.service
