@@ -10,7 +10,9 @@
   become_user: "{{ user.name }}"
 
 - name: Install user dotfiles
-  command: for i in *; do if [[ -d $i ]]; then stow $i; fi; done
+  command: stow "{{ item }}"
+  with_fileglob:
+    - /home/{{ user.name }}/{{ dotfiles.destination }}/*
   when: dotfiles is defined
   become: yes
   become_user: "{{ user.name }}"
