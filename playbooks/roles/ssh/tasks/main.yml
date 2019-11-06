@@ -46,8 +46,22 @@
   file: path=/home/{{ user.name }}/.ssh state=directory owner={{ user.name }} group={{ user.group }}
 
 - name: Install user SSH key
-  copy: src={{ ssh.user_key }} dest=/home/{{ user.name }}/.ssh/id_rsa mode=600 owner={{ user.name }} group={{ user.group }}
-  when: ssh.user_key is defined
+  #copy: src={{ ssh.user_key }} dest=/home/{{ user.name }}/.ssh/id_rsa mode=600 owner={{ user.name }} group={{ user.group }}
+  #when: ssh.user_key is defined
+  openssh_keypair:
+    path: /home/{{ user.name }}/.ssh/id_ecdsa
+    type: ecdsa
+    size: 521
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0600
+
+- name: Set public key permissions
+  file:
+    path: /home/{{ user.name }}/.ssh/id_ecdsa.pub
+    owner: "{{ user.name }}"
+    group: "{{ user.name }}"
+    mode: 0644
 
 - name: Install Mosh
   pacman: name=mosh state=present
