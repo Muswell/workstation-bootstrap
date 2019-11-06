@@ -8,6 +8,9 @@
 - name: Install xmodmap
   pacman: name=xorg-xmodmap state=present
 
+- name: Install xbindkeys
+  pacman: name=xbindkeys state=present
+
 - name: Install xdpyinfo
   pacman: name=xorg-xdpyinfo state=present
 
