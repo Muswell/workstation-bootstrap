@@ -57,6 +57,13 @@ editors:
     - emacs
     - code
 
+vscode:
+    extensions:
+        - Gruntfuggly.todo-tree
+        - ms-vscode.Go
+        - streetsidesoftware.code-spell-checker
+        - yzane.markdown-pdf
+
 video_drivers:
     - libva-intel-driver
 

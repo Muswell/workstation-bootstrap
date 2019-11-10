@@ -12,3 +12,10 @@
 - name: Install NeoVim Plugins
   shell: nvim +'PlugInstall --sync' +qa
   when: '"neovim" in editors'
+
+- name: Install VSCode Extensions
+  command: code --install-extension "{{ item }}" --force
+  with_items: "{{ vscode.extensions }}"
+  when: '"code" in editors and vscode.extensions is defined'
+  become: yes
+  become_user: "{{ user.name }}"
