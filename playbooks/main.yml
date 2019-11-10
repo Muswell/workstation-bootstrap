@@ -18,6 +18,7 @@
     - { role: pass, tags: ['pass'] }
     - { role: sound, tags: ['sound'] }
     - { role: browsers, tags: ['browsers'] }
+    - { role: bluetooth, tags: ['bluetooth'], when: "bluetooth is defined" }
   vars_prompt:
       - name: user_password
         prompt: "Enter desired user password"
