@@ -1,3 +1,3 @@
 ---
 - name: Install autorandr
-    pacman: name=autorandr state=present
+  pacman: name=autorandr state=present
