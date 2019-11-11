@@ -100,6 +100,8 @@ base_packages:
     - zip
     - unzip
     - xclip
+    - wget
+    - dos2unix
 
 filesystem_packages:
     - dosfstools

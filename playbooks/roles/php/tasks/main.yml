@@ -1,0 +1,126 @@
+---
+- name: Install PHP
+  pacman:
+    name:
+      - php
+      - php-apache
+      - php-apcu
+      - php-cgi
+      - php-fpm
+      - php-gd
+      - php-imap
+      - php-intl
+      - php-pgsql
+      - php-sodium
+      - php-sqlite
+      - php-xsl
+      - php-igbinary
+      - php-imagick
+      - php-memcached
+      - php-redis
+    state: present
+
+- name: Install PHP Debug Tools
+  pacman: 
+    name:
+      - xdebug
+      - kcachegrind
+    state: present
+  
+- name: Install Composer
+  pacman: name=composer state=present
+
+- name: Install Pear
+  aur: name=php-pear user={{ user.name }}
+  tags:
+    - aur
+
+- name: Install PHP Utility Programs
+  aur:
+    name:
+      - php-codesniffer
+      - phpcov
+      - phpunit
+    user: "{{ user.name }}"
+  tags:
+    - aur
+
+- name: Download Symfony Installer
+  get_url:
+    url: https://get.symfony.com/cli/installer
+    dest: /home/{{ user.name }}/symfony.sh
+    mode: 0755
+  become: yes
+  become_user: "{{ user.name }}"
+
+- name: Install Symfony
+  shell: cat /home/{{ user.name }}/symfony.sh | bash
+  become: yes
+  become_user: "{{ user.name }}"
+  args:
+    chdir: /home/{{ user.name }}
+
+- name: Move Symfony to path
+  command: mv /home/{{ user.name }}/.symfony/bin/symfony /usr/local/bin/symfony
+
+- name: Remove Symfony Installer
+  file: path=/home/{{ user.name }}/symfony.sh state=absent
+
+- name: Remove Symfony build
+  file: path=/home/{{ user.name }}/.symfony state=absent
+
+- name: Configure PHP for development
+  lineinfile:
+    dest: /etc/php/php.ini
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    create: yes
+  with_items:
+    - { regexp: '^date.timezone', line: 'date.timezone = UTC' }
+    - { regexp: '^error_reporting', line: 'error_reporting = E_ALL' }
+    - { regexp: '^display_errors', line: 'display_errors = on' }
+
+- name: Configure PHP for development
+  lineinfile:
+    dest: /etc/php/conf.d/xdebug.ini
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    create: yes
+  with_items:
+    - { regexp: '^;?zend_extension=', line: 'zend_extension=xdebug.so' }
+    - { regexp: '^;?xdebug.remote_enable=', line: 'xdebug.remote_enable=on' }
+    - { regexp: '^;?xdebug.remote_host=', line: 'xdebug.remote_host=127.0.0.1' }
+    - { regexp: '^;?xdebug.remote_port=', line: 'xdebug.remote_port=9000' }
+    - { regexp: '^;?xdebug.remote_handler=', line: 'xdebug.remote_handler=dbgp' }
+    - { regexp: '^;?xdebug.remote_connect_back=', line: 'xdebug.remote_connect_back=on' }
+    - { regexp: '^;?xdebug.profiler_enable_trigger=', line: 'xdebug.profiler_enable_trigger=on' }
+    - { regexp: '^;?xdebug.profiler_enable=', line: 'xdebug.profiler_enable=off' }
+    - { regexp: '^;?xdebug.profiler_output_dir=', line: 'xdebug.profiler_output_dir=/tmp/kcachegrind' }
+
+- name: Enable Zend OPCache
+  lineinfile:
+    dest: /etc/php/conf.d/opcache.ini
+    regexp: '^;?zend_extension=opcache'
+    line: 'zend_extension=opcache'
+    create: yes
+
+- name: Enable PDO MySQL
+  lineinfile:
+    dest: /etc/php/conf.d/mysql.ini
+    regexp: '^;?extension=pdo_mysql'
+    line: 'extension=pdo_mysql'
+    create: yes
+
+- name: Enable PHP-GD
+  lineinfile:
+    dest: /etc/php/conf.d/gd.ini
+    regexp: '^;?extension=gd'
+    line: 'extension=gd'
+    create: yes
+
+- name: Enable PHP-IMAP
+  lineinfile:
+    dest: /etc/php/conf.d/imap.ini
+    regexp: '^;?extension=imap'
+    line: 'extension=imap'
+    create: yes
