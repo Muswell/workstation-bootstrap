@@ -14,6 +14,7 @@
     - { role: i3, tags: ['i3'], when: "desktop_environment == 'i3'" }
     - { role: nettools, tags: ['nettools'] }
     - { role: networkmanager, tags: ['networkmanager'] }
+    - { role: firejail, tags: ['firejail'] }
     - { role: ntp, tags: ['ntp'] }
     - { role: pass, tags: ['pass'] }
     - { role: sound, tags: ['sound'] }
@@ -22,6 +23,9 @@
     - { role: taskwarrior, tags: ['taskwarrior'] }
     - { role: golang, tags: ['golang'] }
     - { role: php, tags: ['php'] }
+    - { role: office, tags: ['office'] }
+    - { role: pdf, tags: ['pdf'] }
+    - { role: calibre, tags: ['calibre'] }
   vars_prompt:
       - name: user_password
         prompt: "Enter desired user password"

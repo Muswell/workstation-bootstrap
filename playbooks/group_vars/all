@@ -111,6 +111,7 @@ filesystem_packages:
 browser_choices:
     - firefox -P default
     - firefox -P work
+    - firewarden chromium
 
 passwordless_sudo:
     - /usr/bin/openvpn*
