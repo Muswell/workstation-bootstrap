@@ -15,20 +15,11 @@
 - name: Push LightDM greeter background
   copy: src=wallpaper.jpg dest=/usr/share/pixmaps/dm-background.jpg
 
-- name: Specify LightDM greeter background
-  lineinfile: dest=/etc/lightdm/lightdm-gtk-greeter.conf
-              regexp="^background="
-              state=present
-              line="background=/usr/share/pixmaps/dm-background.jpg"
-
 - name: Push LightDM greeter user image
-  copy: src=user.png dest=/usr/share/pixmaps/dm-user.png
+  copy: src=lightdm-gtk-greeter.conf dest=/usr/share/pixmaps/dm-user.png
 
-- name: Specify LightDM greeter user image
-  lineinfile: dest=/etc/lightdm/lightdm-gtk-greeter.conf
-              regexp="^default-user-image="
-              state=present
-              line="default-user-image=/usr/share/pixmaps/dm-user.png"
+- name: Push LightDM greeter conf
+  copy: src=user.png dest=/etc/lightdm/lightdm-gtk-greeter.conf
 
 - name: Force LightDM greeter theme
   lineinfile: dest=/usr/share/xgreeters/lightdm-gtk-greeter.desktop
