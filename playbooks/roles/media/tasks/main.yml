@@ -1,0 +1,9 @@
+---
+- include: inkscape.yml
+- include: gimp.yml
+- include: feh.yml
+- include: imv.yml
+- include: teiler.yml
+
+- name: Install youtube-dl
+  pacman: name=youtube-dl state=present

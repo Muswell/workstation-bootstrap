@@ -1,0 +1,16 @@
+
+- name: Install GIMP
+  pacman: name={{ item }} state=present
+  with_items:
+    - gimp
+    - gimp-plugin-gmic
+  tags:
+    - gimp
+
+- name: Jail GIMP
+  file: src=/usr/bin/firejail
+        dest=/usr/local/bin/gimp
+        state=link
+  tags:
+    - gimp
+    - firejail
