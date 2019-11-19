@@ -10,22 +10,25 @@
   service: name=lightdm.service enabled=yes
 
 - name: Create background dir
-  file: path=/usr/share/backgrounds state=directory
+  file: path=/usr/share/pixmaps state=directory
 
 - name: Push LightDM greeter background
-  copy: src=dm-background.jpg dest=/usr/share/backgrounds/dm-background.jpg
+  copy: src=wallpaper.jpg dest=/usr/share/pixmaps/dm-background.jpg
 
 - name: Specify LightDM greeter background
   lineinfile: dest=/etc/lightdm/lightdm-gtk-greeter.conf
               regexp="^background="
               state=present
-              line="background=/usr/share/backgrounds/dm-background.jpg"
+              line="background=/usr/share/pixmaps/dm-background.jpg"
 
-- name: Hide user images
+- name: Push LightDM greeter user image
+  copy: src=user.png dest=/usr/share/pixmaps/dm-user.png
+
+- name: Specify LightDM greeter user image
   lineinfile: dest=/etc/lightdm/lightdm-gtk-greeter.conf
-              regexp="^hide-user-image="
+              regexp="^default-user-image="
               state=present
-              line="hide-user-image=true"
+              line="default-user-image=/usr/share/pixmaps/dm-user.png"
 
 - name: Force LightDM greeter theme
   lineinfile: dest=/usr/share/xgreeters/lightdm-gtk-greeter.desktop
