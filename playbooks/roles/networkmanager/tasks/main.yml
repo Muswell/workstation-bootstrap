@@ -3,7 +3,7 @@
   pacman:
     name:
       - networkmanager
-      - networkmanager-openvpn
+      - networkmanager-pptp
       - network-manager-applet
       - xfce4-notifyd
       - gnome-keyring

@@ -16,13 +16,13 @@
   copy: src=wallpaper.jpg dest=/usr/share/pixmaps/dm-background.jpg
 
 - name: Push LightDM greeter user image
-  copy: src=lightdm-gtk-greeter.conf dest=/usr/share/pixmaps/dm-user.png
+  copy: src=user.png dest=/usr/share/pixmaps/dm-user.png
 
 - name: Push LightDM greeter conf
-  copy: src=user.png dest=/etc/lightdm/lightdm-gtk-greeter.conf
+  copy: src=lightdm-gtk-greeter.conf dest=/etc/lightdm/lightdm-gtk-greeter.conf
 
 - name: Force LightDM greeter theme
   lineinfile: dest=/usr/share/xgreeters/lightdm-gtk-greeter.desktop
               regexp="^Exec="
               state=present
-              line="Exec=env GTK_THEME=Adwaita:dark lightdm-gtk-greeter"
+              line="Exec=env GTK_THEME='Time? Astonishing!' lightdm-gtk-greeter"
