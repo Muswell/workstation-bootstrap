@@ -307,3 +307,10 @@ units:
     run_on: trusted
 
 kernel_parameters: "quiet consoleblank=60 i915.enable_psr=2"
+
+themes:
+    aur:
+        - mojave-gtk-theme-git
+        - flat-remix
+    repos:
+        - {url: https://github.com/Muswell/Time-Astonishing.git, destination: "Time? Astonishing!"}

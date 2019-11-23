@@ -2,3 +2,4 @@
 dependencies:
   - { role: x }
   - { role: fonts }
+  - { role: themes }

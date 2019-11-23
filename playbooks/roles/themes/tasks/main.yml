@@ -1,0 +1,10 @@
+---
+- name: Install themes from aur
+  aur: name="{{ item }" user={{ user.name }}
+  tags:
+    - aur
+  with_items: "{{ themes.aur }}"
+
+- name: Clone custom themes
+  git: repo={{ item.url }} dest='/usr/share/themes/{{ item.destination }}' depth=1 accept_hostkey=yes update=no
+  with_items: "{{ themes.repos }}"
