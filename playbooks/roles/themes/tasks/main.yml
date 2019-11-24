@@ -1,6 +1,6 @@
 ---
 - name: Install themes from aur
-  aur: name="{{ item }" user={{ user.name }}
+  aur: name={{ item }} user={{ user.name }}
   tags:
     - aur
   with_items: "{{ themes.aur }}"

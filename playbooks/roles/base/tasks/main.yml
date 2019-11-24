@@ -2,8 +2,8 @@
 - include_tasks: "arch.yml"
   when: ansible_os_family == "Archlinux"
 
-- include: shell.yml
 - include: user.yml
+- include: shell.yml
 - include: sudo.yml
 - include: arch_packages.yml
   when: ansible_os_family == "Archlinux"
