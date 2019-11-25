@@ -8,7 +8,7 @@ user:
         dir: log
         rotate: 8
 
-hostname: nous
+hostname: Asimov
 
 dotfiles:
     url: https://github.com/Muswell/dots.git
