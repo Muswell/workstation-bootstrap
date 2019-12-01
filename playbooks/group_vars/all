@@ -314,3 +314,5 @@ themes:
         - flat-remix
     repos:
         - {url: https://github.com/Muswell/Time-Astonishing.git, destination: "Time? Astonishing!"}
+
+nosudo_docker: true

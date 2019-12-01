@@ -1,0 +1,23 @@
+---
+- name: Install Docker
+  pacman: name=docker state=present
+
+- name: Install Docker Compose
+  pacman: name=docker-compose state=present
+
+- name: Create docker group
+  group:
+    name: docker
+    state: present
+
+- name: enable docker
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Add user to docker group
+  user: name={{ user.name }}
+        groups=docker
+        append=yes
+  when: nosudo_docker
