@@ -21,12 +21,12 @@
     state: present
 
 - name: Install PHP Debug Tools
-  pacman: 
+  pacman:
     name:
       - xdebug
       - kcachegrind
     state: present
-  
+
 - name: Install Composer
   pacman: name=composer state=present
 
@@ -79,6 +79,9 @@
     - { regexp: '^date.timezone', line: 'date.timezone = UTC' }
     - { regexp: '^error_reporting', line: 'error_reporting = E_ALL' }
     - { regexp: '^display_errors', line: 'display_errors = on' }
+    - { regexp: '^extension=curl', line: 'extension=curl' }
+    - { regexp: '^extension=iconv', line: 'extension=iconv' }
+    - { regexp: '^extension=intl', line: 'extension=intl' }
 
 - name: Configure PHP for development
   lineinfile:

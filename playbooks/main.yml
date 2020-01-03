@@ -30,7 +30,9 @@
     - { role: media, tags: ['media'] }
     - { role: themes, tags: ['themes'] }
     - { role: mpd, tags: ['mpd'] }
+    - { role: mpv, tags: ['mpv'] }
     - { role: docker, tags: ['docker'] }
+    - { role: mail, tags: ['mail'] }
   vars_prompt:
       - name: user_password
         prompt: "Enter desired user password"
