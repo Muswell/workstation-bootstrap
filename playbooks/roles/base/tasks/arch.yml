@@ -14,8 +14,13 @@
               regexp=^GRUB_CMDLINE_LINUX_DEFAULT
               state=present
               line='GRUB_CMDLINE_LINUX_DEFAULT=\"{{ kernel_parameters }}\"'"
+  lineinfile: dest=/etc/default/grub
+              regexp="^GRUB_TIMEOUT="
+              state=present
+              line="GRUB_TIMEOUT=0"
   when: kernel_parameters is defined and bootloader == 'grub'
   notify:
     - rebuild grub
+
   tags:
     - kernelparams
